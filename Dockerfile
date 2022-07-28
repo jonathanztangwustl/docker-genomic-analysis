@@ -47,8 +47,6 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     r-cran-tidyverse \
     r-cran-wesanderson \
     r-cran-viridis \
-    r-cran-languageserver \
-    r-cran-httpgd \
     python3-pip \
     python3-numpy \
     python3-scipy \
