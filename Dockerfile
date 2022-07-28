@@ -34,6 +34,7 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     unzip \
     wget \
     zip \
+    libcairo2-dev \
     r-cran-biocmanager \
     r-cran-data.table \
     r-cran-dplyr \
@@ -46,6 +47,8 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     r-cran-tidyverse \
     r-cran-wesanderson \
     r-cran-viridis \
+    r-cran-languageserver \
+    r-cran-httpgd \
     python3-pip \
     python3-numpy \
     python3-scipy \
@@ -80,7 +83,8 @@ RUN pip install cruzdb==0.5.6 \
     pyensembl==1.9.4 \
     scikit-learn==1.0.1 \
     svviz==1.6.2 \
-    vatools==5.0.1
+    vatools==5.0.1 \
+    radian
 
 # grab the samtools and bcftools binaries instead of compiling
 COPY --from=quay.io/biocontainers/samtools:1.14--hb421002_0 /usr/local/bin/samtools /usr/local/bin/samtools
