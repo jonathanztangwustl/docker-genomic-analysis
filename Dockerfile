@@ -12,9 +12,6 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     bsdmainutils \ 
     dbus \
     default-jre \
-    emacs \
-    emacs-goodies-el \
-    ess \
     gawk \
     git \
     grep \
@@ -47,6 +44,7 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     r-cran-tidyverse \
     r-cran-wesanderson \
     r-cran-viridis \
+    python3-dev \
     python3-pip \
     python3-numpy \
     python3-scipy \
@@ -57,9 +55,9 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     python3-pandas \
     python3-pysam \
     python3-seaborn \
-    python3-openpyxl && \
     python3-matplotlib \
     python3-reportlab \
+    python3-openpyxl && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
     rm -rf /var/lib/apt/lists/* && \
@@ -86,7 +84,8 @@ RUN pip install cruzdb \
     vatools \
     radian \
     biopython \
-    pyvcf
+    pyvcf \
+    pomegranate
 
 # grab the samtools and bcftools binaries instead of compiling
 COPY --from=quay.io/biocontainers/samtools:1.14--hb421002_0 /usr/local/bin/samtools /usr/local/bin/samtools
