@@ -58,6 +58,8 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     python3-pysam \
     python3-seaborn \
     python3-openpyxl && \
+    python3-matplotlib \
+    python3-reportlab \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
     rm -rf /var/lib/apt/lists/* && \
@@ -75,14 +77,16 @@ RUN cd /tmp/ && \
     cd && rm -rf /tmp/fishplot_0.4.tar.gz
 
 # a few python libs that weren't available through apt-get
-RUN pip install cruzdb==0.5.6 \
-    intervaltree_bio==1.0.1 \
-    multiqc==1.11 \
-    pyensembl==1.9.4 \
-    scikit-learn==1.0.1 \
-    svviz==1.6.2 \
-    vatools==5.0.1 \
-    radian
+RUN pip install cruzdb \
+    intervaltree_bio \
+    multiqc \
+    pyensembl \
+    scikit-learn \
+    svviz \
+    vatools \
+    radian \
+    biopython \
+    pyvcf
 
 # grab the samtools and bcftools binaries instead of compiling
 COPY --from=quay.io/biocontainers/samtools:1.14--hb421002_0 /usr/local/bin/samtools /usr/local/bin/samtools
