@@ -8,6 +8,7 @@ RUN add-apt-repository ppa:c2d4u.team/c2d4u4.0+ && \
     apt-get update -y && apt-get install -y --no-install-recommends \
     ack-grep \
     bzip2 \
+    cmake \
     curl \
     bsdmainutils \ 
     dbus \
@@ -125,6 +126,20 @@ RUN mkdir -p /tmp/ucsc && \
     chmod ugo+x * && \
     mv * /usr/bin/ && \
     rm -rf /tmp/ucsc
+
+# Install bowtie for hmmcopy_utils
+RUN cd /opt && wget https://github.com/BenLangmead/bowtie/releases/download/v1.3.1/bowtie-1.3.1-linux-x86_64.zip && \
+    unzip bowtie-1.3.1-linux-x86_64.zip && \
+    rm -f bowtie-1.3.1-linux-x86_64.zip
+ENV PATH="/opt/bowtie-1.3.1-linux-x86_64:${PATH}"
+
+# Cmake hmmcopy_utils
+# will need to cmake into /opt probably?
+# then cmake, and figure out a way to get it to command utils
+#ADD hmmcopy_utils/* /opt/hmmcopy_utils/
+RUN cd /opt && git clone https://github.com/jonathanztangwustl/hmmcopy_utils.git && \
+    cd /opt/hmmcopy_utils && cmake . && make
+ENV PATH="${PATH}:/opt/hmmcopy_utils"
 
 # a few misc useful utilities:
 ADD utilities/* /usr/bin/
